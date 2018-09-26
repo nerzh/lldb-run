@@ -21,7 +21,7 @@ module Lldbrun
     private
 
     def lldb_run_command
-      "lldb #{argv_parser.param_file_path}"
+      "#{argv_parser.param_lldb} #{argv_parser.param_file_path}"
     end
 
     def generate_start_command
@@ -45,7 +45,7 @@ module Lldbrun
     end
 
     def lldb_standard_params
-      ' ' << argv_parser.param_lldb
+      ' ' << argv_parser.param_lldb_options
     end
 
     def lldb_run

@@ -2,14 +2,17 @@ require 'byebug'
 module Lldbrun
   class ParserARGV
 
-    DEFAULT_LLDB      = ''
-    DEFAULT_START_DIR = `pwd`.strip
+    COUNT_LLDB_VERSIONS  = 99
+    DEFAULT_LLDB         = 'lldb'
+    DEFAULT_LLDB_OPTIONS = ''
+    DEFAULT_START_DIR    = `pwd`.strip
     
-    PARAMETER_FILE_PATH = '-f'
-    PARAMETER_SCAN_DIR  = '-s'
-    PARAMETER_HELP      = '-h'
-    PARAMETER_RUN       = '-r'
-    PARAMETER_LLDB      = '-l'
+    PARAMETER_FILE_PATH    = '-f'
+    PARAMETER_SCAN_DIR     = '-s'
+    PARAMETER_HELP         = '-h'
+    PARAMETER_RUN          = '-r'
+    PARAMETER_LLDB         = '-e'
+    PARAMETER_LLDB_OPTIONS = '-l'
 
     attr_reader :argv, :params
     
@@ -25,16 +28,20 @@ module Lldbrun
       params[PARAMETER_FILE_PATH] or DEFAULT_START_DIR
     end
 
-    def param_lldb
-      params[PARAMETER_LLDB] or DEFAULT_LLDB
-    end
-
     def param_scan_dir
       params[PARAMETER_SCAN_DIR] or DEFAULT_START_DIR
     end
 
+    def param_lldb_options
+      params[PARAMETER_LLDB_OPTIONS] or DEFAULT_LLDB_OPTIONS
+    end
+
     def param_auto_run?
       params[PARAMETER_RUN] ? params[PARAMETER_RUN] == 'true' : true
+    end
+
+    def param_lldb
+      params[PARAMETER_LLDB] or search_lldb
     end
 
     private
@@ -71,6 +78,37 @@ module Lldbrun
     def error_params
       p 'LLDBRUN:  BAD PARAMETERS'
       info
+    end
+
+    def search_lldb
+      versions = {}
+      COUNT_LLDB_VERSIONS.times do |number|
+        version = number < 10 ? '' : "-#{number.to_s.split('').join('.')}"
+        versions[number] = "lldb#{version}" if which?("lldb#{version}")
+      end
+      set_lldb_version(versions)
+    end
+
+    def set_lldb_version(versions)
+      number_version, lldb_command = versions.sort.last
+      lldb_not_found unless number_version
+      warning_lldb_version(lldb_command) if number_version < 40
+      params[PARAMETER_LLDB] = lldb_command
+    end
+
+    def warning_lldb_version(lldb_command)
+      p "---------------------------------------------------------------------------------------------------------------------------"
+      p "WARNING!!! PROBABLY YOUR CURRENT VERSION #{lldb_command} MAYBE < lldb-4.0. THIS MAY BE PROBLEM. PLEASE INSTALL lldb-4.0 end above"
+      p "---------------------------------------------------------------------------------------------------------------------------"
+    end
+
+    def lldb_not_found
+      p "LLDB NOT FOUND!!! PLEASE INSTALL LLDB"
+      exit 1
+    end
+
+    def which?(command)
+      system("which #{command} >/dev/null")
     end
   end
 end

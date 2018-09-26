@@ -4,9 +4,15 @@ Welcome to new gem for set breakpoints in files and debug your app with LLDB in 
 
 ## Installation
 
-Install LLDB to your system:
+Install LLDB to your system with version 4.0 and above:
 
-    $ sudo apt-get install lldb
+    $ sudo apt-get install python-lldb-4.0
+    $ sudo apt-get install lldb-4.0
+
+OR
+
+    $ sudo apt-get install python-lldb-6.0
+    $ sudo apt-get install lldb-6.0
 
 Install lldbrun to your system:
 
@@ -14,7 +20,8 @@ Install lldbrun to your system:
 
 ## Usage
 for example on swift. You must declare globak function with name "lldbpoint" and on point where you call this function the LLDB will stop execute for debug your code in terminal
-e.g. file main.swift 
+
+e.g. file main.swift
 
 ```swift
 import Foundation
