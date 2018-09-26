@@ -6,15 +6,9 @@ TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Install LLDB to your system:
 
-```ruby
-gem 'lldbrun'
-```
-
-And then execute:
-
-    $ bundle
+    $ sudo apt-get install lldb
 
 Or install it yourself as:
 
@@ -22,14 +16,35 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    $ lldbrun -f /Users/username/folder/executable_file_your_app 
 
-## Development
+## OPTIMAL Usage
+```bash
+lldbrun -f /Users/username/folder_your_app/bin/executable_file_your_app -s /Users/username/folder_your_app 
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+### Options
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
+#### -f   path to executable file of your program
+```bash
+lldbrun -f /Users/username/folder_your_app/bin/executable_file_your_app
+```
+#### -s   root directory for scan breakpoints in all your files. Default - current terminal directory.
+```bash
+lldbrun -s /Users/username/folder_your_app
+```
+#### -r   auto run LLDB after initialize breakpoints. Default true
+```bash
+lldbrun -r false
+```
+#### -l   other any standard options of LLDB in quotes "...".
+```bash
+lldbrun -l "b --name heap_delete --condition 'relation->rd_id == 1259'"
+```
+#### -h   help.
+```bash
+lldbrun -h
+```
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/lldbrun.
