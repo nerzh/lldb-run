@@ -14,7 +14,7 @@ module Lldbrun
     end
 
     def run
-      scan_dir(argv_parser.param_scan_dir)
+      scan_dir(argv_parser.param_scan_dir) if argv_parser.params[ParserARGV::PARAMETER_SCAN_DIR]
       system(generate_start_command)
     end
 
@@ -28,11 +28,20 @@ module Lldbrun
       lldb_command = lldb_run_command
       lldb_command << lldb_standard_params
       break_points.each do |break_point|
-        lldb_command << " -o \"#{break_point.lldb_set_breakpoint_command}\""
+        lldb_command << lldb_breakpoint_by_file_line(break_point)
       end
+      lldb_command << lldb_breakpoint_by_method_name
       lldb_command << lldb_run
 
       lldb_command
+    end
+
+    def lldb_breakpoint_by_method_name
+      " -o \"#{BreakPoint.lldb_set_method_name_breakpoint}\""
+    end
+
+    def lldb_breakpoint_by_file_line(break_point)
+      " -o \"#{break_point.lldb_set_breakpoint}\""
     end
 
     def lldb_standard_params
