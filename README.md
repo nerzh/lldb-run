@@ -4,10 +4,9 @@ Welcome to new gem for set breakpoints in files and debug your app with LLDB in 
 
 ## Installation
 
-Install LLDB to your system with version 4.0 and above:
+Install LLDB to your system:
 
-    $ sudo apt-get install python-lldb-4.0
-    $ sudo apt-get install lldb-4.0
+    $ sudo apt-get install lldb
 
 OR
 
@@ -57,7 +56,7 @@ lldbrun -f /Users/username/folder_your_app/bin/executable_file_your_app
 ```bash
 lldbrun -r false
 ```
-#### -r  <false>  auto skip first breakpoint after run. Default - true
+#### -n  <false>  auto skip first breakpoint after run. Default - true
 ```bash
 lldbrun -n false
 ```
