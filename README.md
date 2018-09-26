@@ -45,11 +45,9 @@ and run your app with console command "lldbrun" from this gem
 ### Options
 
 #### -s <path to source files>   if you have lldb error: Breakpoint 1: no locations (pending). Then use -s option. With this option the lldbrun will recursively scanning all files from directory <path to source files> and if directory contain many files, then this may not be fast
-##### In order to insert a breakpoint, simply add the word "lldbpoint" to your file. It can be commented out so that your code can be compiled.
 ```bash
 lldbrun -s /Users/username/folder_your_app
 ```
-
 ### Other options
 #### -f  <path to source files>  path to executable file of your program
 ```bash
