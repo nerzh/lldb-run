@@ -16,6 +16,19 @@ Or install it yourself as:
 
 ## Usage
 
+##### In order to insert a breakpoint, simply add the word "lldbpoint" to your file. It can be commented out so that your code can be compiled.
+
+1. add to any line of your code word
+```bash
+lldbpoint
+```
+2. comment it e.g.
+```bash
+// lldbpoint
+```
+3. Compile your app    
+4. Run
+
     $ lldbrun -f /Users/username/folder/executable_file_your_app 
 
 ## OPTIMAL Usage
