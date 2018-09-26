@@ -8,7 +8,7 @@ Install LLDB to your system:
 
     $ sudo apt-get install lldb
 
-Or install it yourself as:
+Install lldbrun to your system:
 
     $ gem install lldbrun
 
