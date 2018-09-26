@@ -11,6 +11,7 @@ module Lldbrun
     PARAMETER_SCAN_DIR     = '-s'
     PARAMETER_HELP         = '-h'
     PARAMETER_RUN          = '-r'
+    PARAMETER_SKIP         = '-n'
     PARAMETER_LLDB         = '-e'
     PARAMETER_LLDB_OPTIONS = '-l'
 
@@ -40,6 +41,10 @@ module Lldbrun
       params[PARAMETER_RUN] ? params[PARAMETER_RUN] == 'true' : true
     end
 
+    def param_skip_first_step?
+      params[PARAMETER_SKIP] ? params[PARAMETER_SKIP] == 'true' : true
+    end
+
     def param_lldb
       params[PARAMETER_LLDB] or search_lldb
     end
@@ -57,7 +62,8 @@ module Lldbrun
       descriptions << ["#{PARAMETER_FILE_PATH}  <path> executable file of your program"]
       descriptions << ["#{PARAMETER_SCAN_DIR}  <path> root directory for scan breakpoints. Default - current terminal directory"]
       descriptions << ["#{PARAMETER_LLDB}  <' ... '>standard parameters LLDB in quotes -l '...' "]
-      descriptions << ["#{PARAMETER_RUN}  <true/false> auto run LLDB after initialize breakpoints"]
+      descriptions << ["#{PARAMETER_RUN}  <true/false> auto run LLDB after initialize breakpoints. Default - true"]
+      descriptions << ["#{PARAMETER_SKIP}  <true/false> auto skip first breakpoint after run. Default - true"]
       descriptions << ["#{PARAMETER_HELP}  <> this help"]
     end
 

@@ -53,9 +53,13 @@ lldbrun -s /Users/username/folder_your_app
 ```bash
 lldbrun -f /Users/username/folder_your_app/bin/executable_file_your_app
 ```
-#### -r  <false>  auto run LLDB after initialize breakpoints. Default true
+#### -r  <false>  auto run LLDB after initialize breakpoints. Default - true
 ```bash
 lldbrun -r false
+```
+#### -r  <false>  auto skip first breakpoint after run. Default - true
+```bash
+lldbrun -n false
 ```
 #### -l  <"...">  other any standard options of LLDB in quotes "...".
 ```bash

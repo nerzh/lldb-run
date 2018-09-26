@@ -32,6 +32,7 @@ module Lldbrun
       end
       lldb_command << lldb_breakpoint_by_method_name
       lldb_command << lldb_run
+      lldb_command << lldb_skip_first_step
 
       lldb_command
     end
@@ -50,6 +51,10 @@ module Lldbrun
 
     def lldb_run
       argv_parser.param_auto_run? ? ' -o run' : ''
+    end
+
+    def lldb_skip_first_step
+      argv_parser.param_skip_first_step? ? ' -o next' : ''
     end
 
     def full_path(dir, name)

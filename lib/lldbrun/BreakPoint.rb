@@ -13,7 +13,7 @@ module Lldbrun
     end
 
     def self.lldb_set_method_name_breakpoint
-      "breakpoint set --name lldbpoint"
+      "breakpoint set --func-regex lldbpoint"
     end
   end
 end
