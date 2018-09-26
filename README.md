@@ -44,32 +44,22 @@ and run your app with console command "lldbrun" from this gem
 
 ### Options
 
-#### -f    path to executable file of your program
-```bash
-lldbrun -f /Users/username/folder_your_app/bin/executable_file_your_app
-```
-#### -s    root directory for scan breakpoints in all your files. Default - current terminal directory.
-###### ATTENTION
-###### if do not set -s <path to source files> option, that lldbrun will recursively scanning all files from current directory of terminal for search your breakpoints and this may be not fast
+###### -s <path to source files>   if you have lldb error: Breakpoint 1: no locations (pending). Then use -s option. With this option the lldbrun will recursively scanning all files from directory <path to source files> and if directory contain many files, then this may not be fast
 ##### In order to insert a breakpoint, simply add the word "lldbpoint" to your file. It can be commented out so that your code can be compiled.
-1. add to any line of your code word
-```bash
-lldbpoint
-```
-2. comment it e.g.
-```bash
-// lldbpoint
-```
-3. Compile your app    
-4. Run
 ```bash
 lldbrun -s /Users/username/folder_your_app
 ```
-#### -r    auto run LLDB after initialize breakpoints. Default true
+
+### Other options
+#### -f  <path to source files>  path to executable file of your program
+```bash
+lldbrun -f /Users/username/folder_your_app/bin/executable_file_your_app
+```
+#### -r  <false>  auto run LLDB after initialize breakpoints. Default true
 ```bash
 lldbrun -r false
 ```
-#### -l    other any standard options of LLDB in quotes "...".
+#### -l  <"...">  other any standard options of LLDB in quotes "...".
 ```bash
 lldbrun -l "b --name heap_delete --condition 'relation->rd_id == 1259'"
 ```
