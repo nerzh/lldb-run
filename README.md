@@ -30,6 +30,8 @@ lldbpoint
     $ lldbrun -f /Users/username/folder/executable_file_your_app 
 
 ## OPTIMAL Usage
+### ATTENTION
+##### if do not set -s <path to source files> option, that lldbrun will recursively scanning all files from current directory of terminal for search your breakpoints and this may be not fast
 ```bash
 lldbrun -f /Users/username/folder_your_app/bin/executable_file_your_app -s /Users/username/folder_your_app 
 ```
